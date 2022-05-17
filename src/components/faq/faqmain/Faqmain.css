@@ -1,0 +1,22 @@
+.faqmain{
+    width: 80%;
+    margin:5rem auto;
+    text-align: center;
+}
+.faqmain__top span{
+    color: #525fe1;
+    color: var(--color-primary);
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    line-height: 26px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+.faqmain__top{
+    width: 60%;
+    margin: 0 auto;
+    font-weight: 500;
+    font-size: 25px;
+}
