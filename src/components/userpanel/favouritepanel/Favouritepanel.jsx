@@ -2,8 +2,11 @@ import React from 'react'
 import './Favouritepanel.css'
 import {TiDeleteOutline} from 'react-icons/ti'
 import course1 from './../../../Assets/images/Home/course-01.jpeg'
+import Animatedsubpage from '../../../Animatedsubpage'
+
 export default function Favouritepanel() {
   return (
+      <Animatedsubpage>
     <div className='favouritepanel'>
         <div className="favouritepanel__top">
             <div className="favouritepanel__top__item">
@@ -26,5 +29,6 @@ export default function Favouritepanel() {
             </div>
         </div>
     </div>
+    </Animatedsubpage>
   )
 }

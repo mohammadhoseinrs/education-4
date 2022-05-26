@@ -70,11 +70,15 @@
 .homecoursecard__front__top__image{
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+    width: 100%;
+    height: 300px;
 }
 .homecoursecard__front__top__image img{
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .homecoursecard__front__top__heart{
     position: absolute;
@@ -145,11 +149,13 @@
 .homecoursecard__front__bottom__top__right__image img{
     border-radius: 100%;
     display: inline-block;
-    max-height: 34px;
+    height: 30px;
+    width: 30px;
 }
 .homecoursecard__front__bottom__top__right__image{
     margin-left: 7px;
     line-height: 0;
+    
 }
 .homecoursecard__front__bottom__top__right span{
     color: #231f40;

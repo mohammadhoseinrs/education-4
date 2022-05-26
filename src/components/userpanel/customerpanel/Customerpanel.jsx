@@ -1,7 +1,10 @@
 import React from 'react'
 import './customerpanel.css'
+import Animatedsubpage from '../../../Animatedsubpage'
+
 export default function Customerpanel() {
   return (
+    <Animatedsubpage>
     <div className='customerpanel'>
         <div className="customerpanel__top">
             <div className="customerpanel__top__item">
@@ -38,5 +41,6 @@ export default function Customerpanel() {
             </div>
         </div>
     </div>
+    </Animatedsubpage>
   )
 }

@@ -2,11 +2,13 @@ import React from 'react'
 import './Homeupcoming.css'
 import Upcomingcart from './Upcomingcart'
 import shape2 from './../../../Assets/images/Home/shape2.png'
+import FramerMotion from '../../../FramerMotion'
 export default function Homeupcoming() {
   return (
     <section className='homeupcoming'>
         <section className='homeupcoming__container'>
-        <section className="homeupcoming__top">
+            <FramerMotion>
+            <section className="homeupcoming__top">
                 <h5 className='homeupcoming__top__subtitle'>
                     کتگوری دروس
                 </h5>
@@ -14,6 +16,7 @@ export default function Homeupcoming() {
                 لورم ایپسوم متن ساختگی
                 </h1>
             </section>
+            </FramerMotion>
             <section className='homeupcoming__bottom'>
                 <Upcomingcart />
                 <Upcomingcart />

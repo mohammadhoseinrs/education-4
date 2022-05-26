@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Mainbtn from '../../Mainbtn'
 import './HomeHeader.css'
 import arrow from './../../../Assets/images/Home/arrow.png'
@@ -6,8 +6,18 @@ import banner1 from './../../../Assets/images/Home/banner-01.png'
 import shape1 from './../../../Assets/images/Home/shape-19.png'
 import shape2 from './../../../Assets/images/Home/shape-05.png'
 import shape3 from './../../../Assets/images/Home/shape-06.png'
-
+import { getdetail } from '../../../api/userApi'
 export default function HomeHeader() {
+const [homeheader,sethomeheader]=useState({})
+
+    useEffect( ()=>{
+        let mounted=true
+        getdetail('showBack')
+        .then(item=>{
+            sethomeheader(item.data)
+        })
+    },[])
+
   return (
     <section className='homeheader'>
         <section className='homeheader__container'>
@@ -15,16 +25,16 @@ export default function HomeHeader() {
                 <section className='homeheader__inner__right'>
                     <div className="homeheader__inner__right__inner">
                         <span className="homeheader__inner__right__inner__top">
-                        لورم ایپسوم متن ساختگی با تولید
+                            {homeheader.Headline}
                         </span>
                         <h1 className='homeheader__inner__right__inner__title'>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
+                            {homeheader.Main_Tittle}
                         </h1>
                         <p className='homeheader__inner__right__inner__subtitle'>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  
+                            {homeheader.Description}
                         </p>
                         <div className="homeheader__inner__right__btn">
-                            <Mainbtn  text='لورم ایپسوم متن'/>
+                            <Mainbtn  text={homeheader.ButtonTitle}/>
                             <div className="homeheader__inner__right__btn__img">
                                 <img src={arrow} alt="" />
                             </div>
@@ -33,7 +43,7 @@ export default function HomeHeader() {
                 </section>
                 <section className='homeheader__inner__left'>
                     <div className="homeheader__inner__left__image">
-                        <img src={banner1} alt="" />
+                        <img src={homeheader.Picture} alt="" />
                     </div>
                 </section>
             </section>

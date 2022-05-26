@@ -2,8 +2,10 @@ import React from 'react'
 import event1 from './../../../Assets/images/Home/event-01.jpeg'
 import {BsCalendarDate ,BsArrowLeft} from 'react-icons/bs'
 import {BiTimeFive} from 'react-icons/bi'
+import FramerMotion from '../../../FramerMotion'
 export default function Upcomingcart() {
   return (
+    <FramerMotion>
     <div className='upcomingcart'>
         <div className="upcomingcart__inner">
             <div className="upcomingcart__inner__right">
@@ -32,5 +34,6 @@ export default function Upcomingcart() {
             </div>
         </div>
     </div>
+    </FramerMotion>
   )
 }

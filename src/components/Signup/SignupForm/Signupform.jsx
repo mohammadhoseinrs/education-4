@@ -5,23 +5,71 @@ import { Formik , Form } from 'formik';
 import * as yup from 'yup' 
 import Formikcontrol from './../../../validation/Formikcontrol';
 import './Signupform.css'
+import axios from 'axios';
+import { css } from "@emotion/react";
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: white;
+  font-weight:bold;
+  border:5px solid white;
+`;
+
+
 export default function Signupform() {
 
+    const [errmsg,setErrormsg]=useState('')
+    const [errmsg2,setErrormsg2]=useState('')
+    const [errmsg3,setErrormsg3]=useState('')
+    let [color, setColor] = useState("#ffffff");
+    const [loading,setloading]=useState(false)
+
+    const [success,setSuccess]=useState(false)
     const initialValues={
-      Firstname:'',
-      phoneNumber:'',
-      Email:'',
-      Password:'',
+      name:'',
+      phone:'',
+      email:'',
+      password:'',
     }
     const validationSchema=yup.object({
-      Firstname:yup.string().required('لطفا نام کاربری خود را وارد کنید'),
-      Email:yup.string().email('ایمیل نامعتبر').required('لطفا ایمیل خود را وارد کنید'),
-      Password:yup.string().min(5).required('لطفا رمزعبور خود را وارد کنید'),
-      phoneNumber:yup.string().required('لطفا شماره تلفن خود را وارد کنید'),
-
+      name:yup.string().required('لطفا نام کاربری خود را وارد کنید').matches(/^[aA-zZ\s]+$/, "فقط حروف انگلیسی مورد قبول می باشد"),
+      email:yup.string().email('ایمیل نامعتبر').required('لطفا ایمیل خود را وارد کنید'),
+      password:yup.string().min(5 , 'رمز عبور حداقل ۵ حرف باید داشته باشد').required('لطفا رمزعبور خود را وارد کنید'),
+      phone:yup.number().typeError('شماره تلفن نامعتبر').required('لطفا شماره تلفن خود را وارد کنید'),
     })
-    const onSubmit=values=>{
+    const onSubmit=async (values , {resetForm})=>{
+      setloading(true)
       console.log(values);
+      try {
+        const response= await axios.post('https://cafevira.com/api/api/v1/register',
+        JSON.stringify(values),
+        {
+          headers: { 'Content-Type': 'application/json' },
+       }
+        )
+        console.log(response);
+        setloading(false)
+        if(response.data.Status==200){
+          return setSuccess(true)
+        }else if(response.data.Status==='100'){
+          setErrormsg(response.data.Message)
+          setErrormsg2(response.data.Message1)
+          setErrormsg3(response.data.Message1)
+
+        }
+
+      } catch (err) {
+        console.log(err);
+        if (!err?.response) {
+          setErrormsg('No Server Response');
+      } else if (err.response?.status === 422) {
+        setErrormsg('Username Taken');
+      } else {
+        setErrormsg('Registration Failed')
+      }
+      }
     }
   return (
       <>
@@ -30,7 +78,16 @@ export default function Signupform() {
                <div className="register__container__inside__title">
                    ثبت نام
                </div>
+               <p className={errmsg ? 'errmsg' : 'offscreen'}>{errmsg}</p>
+               <p className={errmsg2 ? 'errmsg' : 'offscreen'}>{errmsg2}</p>
+               <p className={errmsg3 ? 'errmsg' : 'offscreen'}>{errmsg3}</p>
+
+              {success &&  <p className='success'>ثبت نام شما با موفقیت انجام شد 
+              <br />
+              برای ادامه دادن لطفا وارد حساب کاربری خود شوید
+              </p>}
              <div className="register__container__inside__inside">
+
                <Formik
                 initialValues={initialValues}
                 onSubmit={onSubmit}
@@ -42,14 +99,20 @@ export default function Signupform() {
             return(
       <div className='formik-div'>  
       <Form action="" className="register-form">
-          <Formikcontrol control='input' name='Firstname'  placeholder='نام کاربری' type='text' autoComplete='off'  />
-          <Formikcontrol control='input' name='phoneNumber' placeholder='شماره موبایل'  type='text' autoComplete='off' />
-          <Formikcontrol control='input' name='Email' type='text' placeholder='ایمیل' autoComplete='off'  />
-          <Formikcontrol control='input' name='Password' type='password' placeholder='رمز عبور'  autoComplete='off' />
+          <Formikcontrol control='input' name='name'  placeholder='نام کاربری' type='text' autoComplete='off'  />
+          <Formikcontrol control='input' name='phone' placeholder='شماره موبایل'  type='text' autoComplete='off' />
+          <Formikcontrol control='input' name='email' type='text' placeholder='ایمیل' autoComplete='off'  />
+          <Formikcontrol control='input' name='password' type='password' placeholder='رمز عبور'  autoComplete='off' />
           <button type='submit'
           disabled={!formik.isValid}
           >
+            {loading ? (
+              <ClipLoader color={color} loading={loading} css={override} size={40} />
+            ):(
+              <p>
             عضویت
+              </p>
+            )}
           </button> 
       </Form>
       </div>   

@@ -26,16 +26,7 @@
     padding: 0 25px;
     margin-left: 10px;
 }
-.userdetail__name{
-    margin: 1rem 0;
-    display: flex;
-    justify-content: space-between;
-}
-.userdetail__name >div{
-    display: flex;
-    flex-direction: column;
-    flex: 0.48;
-}
+
 .userdetail__pass{
     margin-top: 2rem;
     margin-bottom: 1rem;

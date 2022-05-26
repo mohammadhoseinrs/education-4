@@ -1,24 +1,28 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import {MdPersonOutline} from 'react-icons/md'
 import FramerMotion from '../../../FramerMotion'
 import shape2 from './../../../Assets/images/Home/shape-02.png'
-export default function CatItem() {
+import { Link } from 'react-router-dom'
+export default function CatItem({cat}) {
   return (
     <FramerMotion>
-    <div className='catitem'>
+    <Link to='/course' className='catitem'>
         <div className="catitem__top">
-            <MdPersonOutline className='catitem__top__icon' size={30} />
-            <p className='catitem__top__text'>۲۳ درس</p>
+          <img src={cat.Icon} alt="" />
+            <p className='catitem__top__text'>
+              {cat.NumberOfLesson}
+            </p>
         </div>
         <div className="catitem__content">
             <h5 className='catitem__content__title'>
-            لورم ایپسوم متن
+              {cat.Tittle}
             </h5>
             <p className='catitem__content__text'>
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از 
+              {cat.Description}
             </p>
         </div>
-    </div>
+    </Link>
     </FramerMotion>
   )
 }

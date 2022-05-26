@@ -1,25 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Animatedsubpage from '../../../Animatedsubpage'
 import './userdetail.css'
 export default function Userdetail() {
+
+    const [name,setname]=useState('')
+    const [phone,setphone]=useState('')
+    const [email,setemail]=useState('')
+    console.log(name);
   return (
+      <Animatedsubpage>
     <div className='userdetail'>
         <div className="userdetail__number">
-            <label htmlFor="">شماره موبایل</label>
-            <input type="text" />
+            <label htmlFor="">نام</label>
+            <input type="text" onChange={(e)=>setname(e.target.value)} />
         </div>
-        <div className="userdetail__name">
-            <div>
-                <label htmlFor="">نام </label>
-            <input type="text" />
-            </div>
-            <div>
-                <label htmlFor=""> نام خانوادگی</label>
-            <input type="text" />
-            </div>
+        <div className="userdetail__number">
+             <label htmlFor="">  شماره موبایل</label>
+            <input type="text" onChange={(e)=>setphone(e.target.value)} />
+          
         </div>
         <div className="userdetail__number">
             <label htmlFor="">آدرس ایمیل</label>
-            <input type="text" />
+            <input type="text" onChange={(e)=>setemail(e.target.value)} />
         </div>
         <div className="userdetail__pass">
         تغییر رمز عبور
@@ -42,5 +44,6 @@ export default function Userdetail() {
             </button>
         </div>
     </div>
+    </Animatedsubpage>
   )
 }

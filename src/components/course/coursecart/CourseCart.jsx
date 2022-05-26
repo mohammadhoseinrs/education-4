@@ -5,9 +5,12 @@ import {MdOutlineArticle} from 'react-icons/md'
 import {BiTimeFive} from 'react-icons/bi'
 import {BsPeople} from 'react-icons/bs'
 import course2 from './../../../Assets/images/coursedetail/course-30.jpeg'
+import { Link, useParams } from 'react-router-dom'
 export default function CourseCart() {
+    const params=useParams()
+    console.log(params.courseid);
   return (
-    <div className='coursecart'>
+    <Link to={`/allcourse/params.courseid/2`} className='coursecart'>
         <div className="coursecart__right">
             <img src={course2} alt="" />
             <div className="coursecart__right__icon1">
@@ -71,6 +74,6 @@ export default function CourseCart() {
                 </div>
             </div>
         </div>
-    </div>
+    </Link>
   )
 }

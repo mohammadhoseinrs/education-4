@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './UserPanel.css'
 import { NavLink ,Outlet } from 'react-router-dom';
 import {AiOutlineHome ,AiOutlineHeart} from 'react-icons/ai'
@@ -7,7 +7,14 @@ import {FaGraduationCap} from 'react-icons/fa'
 import {BiBasketball} from 'react-icons/bi'
 import {ImExit} from 'react-icons/im'
 import AnimatedPage from '../../animated';
+import { useSelector } from 'react-redux';
 export default function UserPanel() {
+
+    const exithandler=()=>{
+        sessionStorage.removeItem('educationsite')
+    }
+    const {user}=useSelector(state=>state.login)
+    console.log(user);
   return (
       <AnimatedPage>
     <section className='userpanel'>
@@ -17,11 +24,11 @@ export default function UserPanel() {
             <div className="userpanel__cart__inner">
                 <div className="userpanel__cart__inner__user">
                     <p>سلام</p>
-                    <p>mohammadhoseinrs</p>
+                    <p>{user?.name}</p>
                     <p>عزیز!</p>
                 </div>
                 <div className="userpanel__cart__inner__item">
-                    <NavLink to='main' className={(Link)=>Link.isActive ?'.active' :''}>
+                    <NavLink to='main'>
                         <AiOutlineHome />
                         <p>پیشخوان</p>
                     </NavLink>
@@ -45,7 +52,7 @@ export default function UserPanel() {
                         <BiBasketball />
                         <p>تیکت های پشنتیبانی</p>
                     </NavLink>
-                    <NavLink to='/'>
+                    <NavLink to='/' className={(Link)=>Link.isActive ?'.active' :''} onClick={exithandler}>
                         <ImExit />
                         <p>خروج</p>
                     </NavLink>

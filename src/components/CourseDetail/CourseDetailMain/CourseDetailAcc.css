@@ -65,7 +65,7 @@
 }
 @media screen and (max-width:550px){
     .courseaccitem__header__btn{
-        font-size: 14px;
+        font-size: 10px;
         padding: 13px 10px;
     }
     .courseaccitem__collapse{
@@ -76,5 +76,8 @@
     }
     .cdm__videocard{
         padding-bottom: 20px;
+    }
+    .courseaccitem__collapse__text p{
+        font-size: 12px;
     }
 }

@@ -5,14 +5,31 @@ import {AiTwotoneHeart ,AiFillStar} from 'react-icons/ai'
 import {MdArticle} from 'react-icons/md'
 import {BsArrowLeft} from 'react-icons/bs'
 import { Link } from 'react-router-dom'
-export default function Homecoursecard() {
+
+export default function Homecoursecard({course}) {
+    console.log(course);
+    const {
+        teacher,
+        courses_name,
+        number_of_lesson,
+        courses_topic,
+        courses_description,
+        courses_price,
+        discount,
+        time_courses,
+        number_student,
+        courses_points,
+        teacher_pic,
+        NumberOfLesson,
+        courses_pic
+    }=course
   return (
     <div className='homecoursecard'>
         <div className="homecoursecard__front">
             <div className="homecoursecard__front__content">
             <div className="homecoursecard__front__top">
                 <div className="homecoursecard__front__top__image">
-                    <img src={course1} alt="" />
+                    <img src={courses_pic} alt="" />
                 </div>
                 <div className="homecoursecard__front__top__heart">
                     <button className='homecoursecard__front__top__heart__btn'>
@@ -20,32 +37,33 @@ export default function Homecoursecard() {
                     </button>
                 </div>
                 <div className="homecoursecard__front__top__box">
-                    لورم ایپسوم متن
+                    {courses_topic}
                 </div>
             </div>
             <div className="homecoursecard__front__bottom">
                 <div className="homecoursecard__front__bottom__top">
                     <div className="homecoursecard__front__bottom__top__right">
                         <div className="homecoursecard__front__bottom__top__right__image">
-                            <img src={instructor1} alt="" />
+                            <img src={teacher_pic} alt="" />
                         </div>
-                        <span>محمدرضا رستمی</span>
+                        <span>{teacher}</span>
                     </div>
                     <div className="homecoursecard__front__bottom__top__right__left">
                         <MdArticle />
-                        <span>۲۶ درس</span>
+                        <span>
+                            {number_of_lesson} درس</span>
                     </div>
                 </div>
                 <div className="homecoursecard__front__bottom__title">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                    {courses_name}
                 </div>
                 <div className="homecoursecard__front__bottom__bottom">
                     <div className="homecoursecard__front__bottom__bottom__right">
                             <div className="homecoursecard__front__bottom__bottom__right__currentprice">
-                                ۴۵،۰۰۰
+                                {discount}
                             </div>
                             <div className="homecoursecard__front__bottom__bottom__right__oldprice">
-                                ۵۵،۰۰۰
+                                {courses_price}
                             </div>
                     </div>
                     <div className="homecoursecard__front__bottom__bottom__left">
@@ -57,7 +75,7 @@ export default function Homecoursecard() {
                             <AiFillStar />
                         </div>
                         <div className="homecoursecard__front__bottom__bottom__left__ratingcount">
-                        (۴.۹)
+                        ({courses_points})
                         </div>
                     </div>
                 </div>
@@ -77,10 +95,10 @@ export default function Homecoursecard() {
                 </div>
                 </div>
                 <div className="homecoursecard__hover__title">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                    {courses_topic}
                 </div>
                 <p className="homecoursecard__hover__text">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                    {courses_description}
                 </p>
                 <div className="homecoursecard__hover__price">
                 ۵۵،۰۰۰
@@ -88,18 +106,18 @@ export default function Homecoursecard() {
                 <div className="homecoursecard__front__bottom__top">
                     <div className="homecoursecard__front__bottom__top__right">
                         <div className="homecoursecard__front__bottom__top__right__image">
-                            <img src={instructor1} alt="" />
+                            <img src={teacher_pic} alt="" />
                         </div>
-                        <span style={{color:'#fff'}}>محمدرضا رستمی</span>
+                        <span style={{color:'#fff'}}>{teacher}</span>
                     </div>
                     <div className="homecoursecard__front__bottom__top__right__left">
                         <MdArticle  />
-                        <span>۲۶ درس</span>
+                        <span>{number_of_lesson} درس</span>
                     </div>
                 </div>
                 <button className='homecoursecard__hover__btn'>
                     <Link to='/coursedetail' className='homecoursecard__hover__btn__text'>
-                        لورم ایپسوم متن
+                        مشاهده دوره
                     </Link>
                      <BsArrowLeft />
                 </button>

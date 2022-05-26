@@ -1,6 +1,7 @@
 import React from 'react'
 import AnimatedPage from '../../animated'
 import Homebanner from '../../components/Home/Homebanner/Homebanner'
+import Homebanner2 from '../../components/Home/Homebanner2/Homebanner2'
 import Homeblog from '../../components/Home/Homeblog/Homeblog'
 import HomeCategory from '../../components/Home/HomeCategory/HomeCategory'
 import Homecomuni from '../../components/Home/HomeComuni/Homecomuni'
@@ -19,6 +20,7 @@ export default function Home() {
         <Homebanner />
         <Homeupcoming />
         <Hometeacher />
+        <Homebanner2 />
         <Homeblog />
     </AnimatedPage>
   )

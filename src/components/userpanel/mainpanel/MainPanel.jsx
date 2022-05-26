@@ -2,8 +2,11 @@ import React from 'react'
 import './MainPanel.css'
 import {FaUniversity , FaUserGraduate ,FaWallet ,FaRegBell} from 'react-icons/fa'
 import {BsBasket3Fill ,BsInstagram ,BsWhatsapp} from 'react-icons/bs'
+import Animatedsubpage from '../../../Animatedsubpage'
+
 export default function MainPanel() {
   return (
+    <Animatedsubpage>
     <section className='mainpanel'>
       <section className='mainpanel__container'>
         <div className="mainpanel__top">
@@ -94,5 +97,6 @@ export default function MainPanel() {
           </div>
       </section>
     </section>
+    </Animatedsubpage>
   )
 }

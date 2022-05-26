@@ -8,12 +8,12 @@ import {GiHamburgerMenu} from 'react-icons/gi'
 import {AnimatePresence} from 'framer-motion'
 import HamburgerMenu from './HamburgerMenu'
 import HeaderSearch from './HeaderSearch'
+import { useSelector } from 'react-redux'
 export default function Navbar() {
     const [openMenu,setOpenMenu]=useState(false)
     const [openSearch,setopenSearch]=useState(false)
-
+    const {isAuth}=useSelector(state=>state.login)
     useEffect(() => {
-        console.log(openMenu);
         if (openMenu) {
           document.body.style.overflow = 'hidden'
         }
@@ -37,7 +37,7 @@ export default function Navbar() {
             <section className='navbar__item'>
                 <ul className='navbar__item__item'>
                     <Link to='/'>خانه</Link>
-                    <Link to='/coursedetail'>دوره ها</Link>
+                    <Link to='/allcourse'>دوره ها</Link>
                     <Link to='/userpanel/main'>مدرس ها</Link>
                     <Link to='/blog'>وبلاگ</Link>
                     <Link to='/contact'>تماس با ما</Link>
@@ -48,13 +48,32 @@ export default function Navbar() {
                 <div className="navbar__searchbox" onClick={()=>setopenSearch(true)}>
                     <FiSearch />
                 </div>
-                <Link to='/signup' className="navbar__login" >
+                {isAuth ? (
+                <>
+                
+                <Link to='/userpanel/main' className='navbar__user'>
+                    mohammadhosein
+                </Link>
+                <Link to='/userpanel/main' className="navbar__login2 navbar__login3" >
+                    <BiUser />
+                </Link>
+                </>
+                    
+                ):(
+                <>
+                
+                 <Link to='/signup' className="navbar__login" >
                     <p>ثبت نام / ورود</p>
                     <BiUser />
                 </Link>
                 <Link to='/signup' className="navbar__login2" >
                     <BiUser />
                 </Link>
+                </>
+
+
+                )}
+               
             </section>
             <div className="hamburger__menu1">
                 <GiHamburgerMenu  onClick={()=>setOpenMenu(true)} />

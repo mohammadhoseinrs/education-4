@@ -9,6 +9,7 @@
     width: 80%;
     margin: 0 auto;
     padding-bottom: 5rem;
+    padding-top: 12rem;
 }
 .homeblog__top__right h5{
     color: #525fe1;
@@ -191,6 +192,9 @@
         border-radius: 50%;
         font-size: 12px;
     }
+    .homeblog{
+        overflow: hidden;
+    }
 
 }
 @media screen and (max-width:550px){
@@ -202,5 +206,8 @@
     }
     .homeblog__inner__item__top__inner__bottom__btn{
         font-size: 10px;
+    }
+    .homeblog__container{
+        padding-top: 5rem;
     }
 }

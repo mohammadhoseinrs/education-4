@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {MdKeyboardArrowDown , MdKeyboardArrowUp ,MdOutlineArticle} from 'react-icons/md'
 import {AiOutlineLock} from 'react-icons/ai'
 import './CourseDetailAcc.css'
+import { AnimatePresence, motion } from 'framer-motion'
 const courseacc=[
     {id:1,title:'پیش نیاز های ری اکت', item:[
         {id:11,name:'ویدیوی معرفی'},
@@ -26,11 +27,26 @@ const courseacc=[
     },
     
 ]
+const variants = {
+    initial: {
+      opacity: 0,
+      y:'-10%'
+    },
+    enter: {
+      opacity: 1,
+      transition: { duration: 0.2 },
+      y:'0%'
+    },
+    exit: {
+      opacity: 0.4,
+      transition: { duration: 0.2 },
+      y:'-20%'
+    }
+  };
 
 export default function CourseDetailAcc() {
     const [openacc,setopenacc]=useState(courseacc)
     const accordian=(id)=>{
-        console.log(id);
         const newacc=[...courseacc]
         console.log(newacc);
         newacc.forEach(acc=>{
@@ -47,11 +63,17 @@ export default function CourseDetailAcc() {
             <div className="courseaccitem__header" onClick={()=>accordian(acc.id)}>
                 <div className="courseaccitem__header__btn">
                     {acc.title}
-                    <MdKeyboardArrowDown />
+                   {acc.open ? (<MdKeyboardArrowDown />):(<MdKeyboardArrowUp />)} 
                 </div>
             </div>
+            <AnimatePresence exitBeforeEnter>
             {acc.open ?(
-            <div className="courseaccitem__collapse">
+            <motion.div
+            animate="enter"
+            exit="exit"
+            initial="initial"
+            variants={variants}            
+            className="courseaccitem__collapse">
                 <ul>
                 {acc.item.map(accitem=>{
                       console.log(accitem);
@@ -67,8 +89,9 @@ export default function CourseDetailAcc() {
                       )
                   })}
                 </ul>
-            </div>
+            </motion.div>
                 ):('')}
+            </AnimatePresence>
         </div>
     ))}
     </div>
